@@ -76,7 +76,8 @@ read_survey <-
            legacy = FALSE,
            add_column_map = TRUE,
            add_var_labels = TRUE,
-           col_types = NULL
+           col_types = NULL,
+           show_col_types = TRUE
   ) {
 
 
@@ -106,6 +107,7 @@ read_survey <-
     checkarg_isboolean(legacy)
     checkarg_isboolean(add_column_map)
     checkarg_isboolean(add_var_labels)
+    checkarg_isboolean(show_col_types)
 
 
     # READ RAW DATA ----
@@ -119,7 +121,8 @@ read_survey <-
         readr::read_csv(
           file = file_name,
           col_types = readr::cols(.default = readr::col_character()),
-          na = c("")
+          na = c(""),
+          show_col_types = show_col_types
         ))
 
     # If Qualtrics adds an empty column at the end, remove it
